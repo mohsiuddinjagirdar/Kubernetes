@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeploymentset-v1
+  labels:
+    app: nginx
+    env: dev
+  annotations:
+    kubernetes.io/change-cause: "Initial release with nginx 1.19"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        env: dev
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
